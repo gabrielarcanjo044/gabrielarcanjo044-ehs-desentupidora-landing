@@ -430,6 +430,29 @@
     .author-name { font-size: .85rem; font-weight: 700; color: #fff; }
     .author-city { font-size: .75rem; color: var(--gray); }
 
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.92);
+      align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw; max-height: 90vh;
+      border-radius: 10px;
+      object-fit: contain;
+      box-shadow: 0 8px 48px rgba(0,0,0,.6);
+    }
+    .lightbox-close {
+      position: absolute; top: 18px; right: 24px;
+      color: #fff; font-size: 2rem; font-weight: 700;
+      cursor: pointer; line-height: 1;
+      opacity: .8;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
     /* ── GALERIA ── */
     .gallery-grid {
       display: grid;
@@ -442,6 +465,7 @@
       object-fit: cover;
       border-radius: 12px;
       display: block;
+      cursor: zoom-in;
       transition: transform .2s, opacity .2s;
     }
     .gallery-grid img:hover { transform: scale(1.03); opacity: .9; }
@@ -798,5 +822,28 @@
   <span class="footer-sub">Zona Norte de SP · Jateamento e Caminhão Sucção · Das 06h às 22h · Desde 2011</span>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+
+  document.querySelectorAll('.gallery-grid img').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lightbox.classList.add('open');
+    });
+  });
+
+  function closeLightbox() { lightbox.classList.remove('open'); }
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target !== lbImg) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
 </body>
 </html>
