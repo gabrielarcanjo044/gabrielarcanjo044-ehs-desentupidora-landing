@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EHS Desentupidora — Atendimento 24h em São Paulo</title>
+  <meta name="description" content="Desentupidora 24 horas em São Paulo. Desentupimento de pia, vaso, ralo, esgoto, coluna e caixa de gordura. Ligue (11) 3774-6352." />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:    #0d1b2a;
+      --navy2:   #112233;
+      --navy3:   #0a1520;
+      --red:     #e63329;
+      --red-dark:#c0251c;
+      --green:   #25d366;
+      --white:   #ffffff;
+      --gray:    #8a9ab0;
+      --border:  rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.65;
+    }
+
+    /* ── WHATSAPP FLUTUANTE ── */
+    .wpp-float {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      z-index: 999;
+      width: 58px; height: 58px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,.5);
+      animation: wpp-pulse 2.5s ease-in-out infinite;
+      transition: transform .2s;
+    }
+    .wpp-float:hover { transform: scale(1.1); }
+    .wpp-float svg { width: 28px; height: 28px; fill: #fff; }
+    @keyframes wpp-pulse {
+      0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.5); }
+      50%      { box-shadow: 0 4px 36px rgba(37,211,102,.8); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: rgba(13,27,42,.95);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 1.15rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 600;
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta {
+      background: var(--green);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 700; font-size: .88rem;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 7px;
+      transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .88; }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      nav { padding: 0 18px; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy3) 0%, var(--navy2) 100%);
+      padding: 70px 32px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(230,51,41,.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      align-items: center;
+      gap: 48px;
+      position: relative; z-index: 1;
+    }
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(230,51,41,.15);
+      border: 1px solid rgba(230,51,41,.3);
+      color: #ff7070;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.1rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.18;
+      margin-bottom: 18px;
+    }
+    .hero h1 span { color: var(--red); }
+
+    .hero-sub {
+      color: rgba(255,255,255,.7);
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+    }
+    .hero-orcamento {
+      color: var(--red);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 32px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    /* CHECK PILLS */
+    .check-pills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .check-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.9);
+    }
+    .check-pill .chk {
+      width: 20px; height: 20px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem;
+      flex-shrink: 0;
+    }
+
+    /* CTA BUTTONS */
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-wpp {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--green);
+      color: #fff;
+      padding: 16px 28px;
+      border-radius: 50px;
+      font-weight: 800; font-size: .95rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      transition: all .2s;
+    }
+    .btn-wpp:hover { background: #20b858; transform: translateY(-2px); }
+    .btn-phone {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--red);
+      color: #fff;
+      padding: 16px 28px;
+      border-radius: 50px;
+      font-weight: 800; font-size: .95rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(230,51,41,.35);
+      transition: all .2s;
+    }
+    .btn-phone:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+    /* HERO RIGHT CARD */
+    .hero-right {
+      position: relative;
+    }
+    .hero-card {
+      background: var(--red);
+      border-radius: 20px;
+      padding: 32px 28px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(230,51,41,.3);
+    }
+    .hero-card .card-title {
+      font-size: 1rem;
+      color: rgba(255,255,255,.85);
+      margin-bottom: 4px;
+    }
+    .hero-card .card-big {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .hero-card .card-big span { font-size: 1.1rem; }
+    .shield-icon {
+      width: 72px; height: 72px;
+      background: rgba(255,255,255,.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 16px;
+    }
+    .hero-card .card-cta {
+      display: block;
+      background: #fff;
+      color: var(--red);
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 800;
+      font-size: .9rem;
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .hero-card .card-cta:hover { opacity: .9; }
+    .badge-24h {
+      position: absolute;
+      top: -16px; right: -16px;
+      background: var(--navy);
+      border: 3px solid var(--red);
+      color: var(--red);
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-weight: 900; font-size: .9rem;
+      line-height: 1.1;
+    }
+
+    /* ── URGÊNCIA ── */
+    .urgency {
+      background: var(--red);
+      color: #fff;
+      text-align: center;
+      padding: 13px 24px;
+      font-weight: 700; font-size: .9rem;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .urgency a { color: #fff; text-decoration: underline; font-size: .95rem; }
+
+    /* ── SEÇÕES ── */
+    .section { padding: 80px 32px; }
+    .section-dark { background: var(--navy3); }
+    .section-mid  { background: var(--navy2); }
+    .container { max-width: 1080px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      background: rgba(230,51,41,.15);
+      border: 1px solid rgba(230,51,41,.25);
+      color: #ff7070;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      color: var(--gray);
+      font-size: .97rem;
+      max-width: 540px;
+      margin-bottom: 44px;
+    }
+
+    /* ── SERVIÇOS ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px;
+    }
+    .service-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px 20px;
+      text-align: center;
+      transition: all .22s;
+    }
+    .service-card:hover {
+      border-color: var(--red);
+      background: rgba(230,51,41,.07);
+      transform: translateY(-4px);
+    }
+    .sc-icon {
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .service-card h3 { font-size: .92rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .service-card p  { font-size: .8rem; color: var(--gray); line-height: 1.55; margin-bottom: 16px; }
+    .btn-orcamento {
+      display: inline-block;
+      background: transparent;
+      color: var(--red);
+      border: 1.5px solid var(--red);
+      padding: 7px 18px;
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all .15s;
+    }
+    .btn-orcamento:hover { background: var(--red); color: #fff; }
+
+    /* ── COMO FUNCIONA ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+    .step-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 22px;
+      text-align: center;
+    }
+    .step-num {
+      width: 46px; height: 46px;
+      background: var(--red);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 1rem;
+      margin: 0 auto 16px;
+    }
+    .step-card h3 { font-size: .92rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .step-card p  { font-size: .82rem; color: var(--gray); line-height: 1.55; }
+
+    /* ── DIFERENCIAIS ── */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .diff-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px 22px;
+      transition: all .2s;
+    }
+    .diff-card:hover {
+      border-color: var(--red);
+      background: rgba(230,51,41,.07);
+    }
+    .diff-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+    .diff-card h3 { font-size: .92rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .diff-card p  { font-size: .82rem; color: var(--gray); line-height: 1.55; }
+
+    /* ── DEPOIMENTOS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .testimonial {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 20px;
+    }
+    .stars { color: #f59e0b; font-size: 1rem; margin-bottom: 12px; }
+    .testimonial p { font-size: .87rem; color: rgba(255,255,255,.75); line-height: 1.6; margin-bottom: 16px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 10px; }
+    .author-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .author-name { font-size: .85rem; font-weight: 700; color: #fff; }
+    .author-city { font-size: .75rem; color: var(--gray); }
+
+    /* ── ÁREAS ── */
+    .areas-flex { display: flex; flex-wrap: wrap; gap: 10px; }
+    .area-chip {
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.8);
+      transition: all .15s;
+    }
+    .area-chip:hover { border-color: var(--red); color: var(--red); }
+    .areas-note { margin-top: 22px; font-size: .87rem; color: var(--gray); }
+    .areas-note-link { color: var(--red); font-weight: 700; text-decoration: none; }
+    .areas-note-link:hover { text-decoration: underline; }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: var(--red);
+      padding: 80px 32px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,.15) 0%, transparent 60%);
+    }
+    .cta-section .container { position: relative; z-index: 1; }
+    .cta-section h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 900; color: #fff; margin-bottom: 10px; }
+    .cta-section p  { color: rgba(255,255,255,.85); font-size: 1rem; margin-bottom: 36px; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--red);
+      padding: 16px 32px; border-radius: 50px;
+      font-weight: 800; font-size: .95rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
+      transition: all .2s;
+    }
+    .btn-cta-white:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(0,0,0,.25); }
+    .btn-cta-wpp {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green); color: #fff;
+      padding: 16px 32px; border-radius: 50px;
+      font-weight: 800; font-size: .95rem;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .btn-cta-wpp:hover { background: #20b858; transform: translateY(-2px); }
+
+    /* ── CONTATO ── */
+    .contact-section {
+      background: var(--navy3);
+      border-top: 1px solid var(--border);
+      padding: 52px 32px;
+    }
+    .contact-grid {
+      max-width: 1080px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 28px;
+    }
+    .contact-item { text-align: center; }
+    .ci-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+    .contact-item h4 { font-size: .7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+    .contact-item a, .contact-item p { font-size: 1rem; font-weight: 700; color: #fff; text-decoration: none; }
+    .contact-item a:hover { color: var(--red); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060e16;
+      border-top: 1px solid rgba(255,255,255,.05);
+      padding: 20px 32px;
+      text-align: center;
+      color: rgba(255,255,255,.3);
+      font-size: .8rem;
+    }
+    footer strong { color: rgba(255,255,255,.5); }
+    .footer-sub { margin-top: 5px; display: block; }
+
+    @media (max-width: 600px) {
+      .section { padding: 56px 20px; }
+      .hero { padding: 52px 18px 64px; }
+      .check-pills { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a class="wpp-float" href="https://wa.me/5511980533393?text=Olá!%20Preciso%20de%20um%20desentupidor%20urgente." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="VYk1B.jpg" alt="EHS Desentupidora" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#diferenciais">Vantagens</a></li>
+    <li><a href="#areas">Áreas</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/5511980533393" target="_blank" rel="noopener noreferrer">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    CHAME NO WHATSAPP
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">🔴 Desentupidora 24 horas</div>
+      <h1>Solução Imediata<br>para <span>Entupimentos!</span></h1>
+      <p class="hero-sub">Seu problema de entupimento resolvido com rapidez, máquina profissional e valor acessível.</p>
+      <p class="hero-orcamento"><a class="hero-orcamento-link" href="https://wa.me/5511980533393" target="_blank" rel="noopener noreferrer">Solicite um orçamento.</a></p>
+      <div class="check-pills">
+        <div class="check-pill"><div class="chk">✓</div>Orçamento sem compromisso</div>
+        <div class="check-pill"><div class="chk">✓</div>Atendimento imediato</div>
+        <div class="check-pill"><div class="chk">✓</div>Máquina profissional</div>
+        <div class="check-pill"><div class="chk">✓</div>14 anos de experiência</div>
+      </div>
+      <div class="hero-btns">
+        <a class="btn-wpp" href="https://wa.me/5511980533393?text=Olá!%20Preciso%20de%20um%20desentupidor%20urgente." target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          CHAME NO WHATSAPP
+        </a>
+        <a class="btn-phone" href="tel:+551137746352">📞 (11) 3774-6352</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="badge-24h">24<br>HORAS</div>
+        <div class="shield-icon">🛡️</div>
+        <div class="card-title">Diga adeus aos</div>
+        <div class="card-big">ENTUPI<br><span>MENTOS!</span></div>
+        <a class="card-cta" href="https://wa.me/5511980533393?text=Quero%20solicitar%20uma%20visita." target="_blank" rel="noopener noreferrer">▶ Solicite agora uma visita da nossa equipe</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- URGÊNCIA -->
+<div class="urgency">
+  🚨 Entupimento urgente? Ligue agora:
+  <a href="tel:+551198053393">(11) 98053-3393</a>
+  — Atendemos imediatamente!
+</div>
+
+<!-- SERVIÇOS -->
+<section class="section section-mid" id="servicos">
+  <div class="container">
+    <div class="section-label">Nossos Serviços</div>
+    <h2 class="section-title">Desentupimos qualquer tipo<br>de entupimento</h2>
+    <p class="section-sub">Com máquina profissional, resolvemos o que outros não conseguem. Rápido e sem bagunça.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="sc-icon">🚿</span>
+        <h3>Pia e Ralo</h3>
+        <p>Cozinha, banheiro, lavanderia e tanque. Desentupimento rápido sem quebra.</p>
+        <a class="btn-orcamento" href="https://wa.me/5511980533393?text=Preciso%20desentupir%20pia%20ou%20ralo." target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+      </div>
+      <div class="service-card">
+        <span class="sc-icon">🚽</span>
+        <h3>Vaso Sanitário</h3>
+        <p>Vaso entupido ou não descarregando? Resolvemos com equipamento especializado.</p>
+        <a class="btn-orcamento" href="https://wa.me/5511980533393?text=Preciso%20desentupir%20vaso." target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+      </div>
+      <div class="service-card">
+        <span class="sc-icon">🏗️</span>
+        <h3>Esgoto e Coluna</h3>
+        <p>Desentupimento de coluna predial e esgoto com máquina de alta pressão.</p>
+        <a class="btn-orcamento" href="https://wa.me/5511980533393?text=Preciso%20desentupir%20esgoto." target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+      </div>
+      <div class="service-card">
+        <span class="sc-icon">🍳</span>
+        <h3>Caixa de Gordura</h3>
+        <p>Limpeza e desentupimento para restaurantes, hotéis e residências.</p>
+        <a class="btn-orcamento" href="https://wa.me/5511980533393?text=Preciso%20limpar%20caixa%20de%20gordura." target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+      </div>
+      <div class="service-card">
+        <span class="sc-icon">🏊</span>
+        <h3>Piscina e Pileta</h3>
+        <p>Ralo de piscina e pileta entupidos? Solução com equipamento profissional.</p>
+        <a class="btn-orcamento" href="https://wa.me/5511980533393?text=Preciso%20de%20desentupimento%20de%20piscina." target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+      </div>
+      <div class="service-card">
+        <span class="sc-icon">🏨</span>
+        <h3>Hotéis e Motéis</h3>
+        <p>Atendimento especializado e discreto para hotelaria e condomínios.</p>
+        <a class="btn-orcamento" href="https://wa.me/5511980533393?text=Preciso%20de%20desentupimento%20comercial." target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+      </div>
+      <div class="service-card">
+        <span class="sc-icon">🏢</span>
+        <h3>Condomínios</h3>
+        <p>Desentupimento predial em condomínios residenciais e comerciais.</p>
+        <a class="btn-orcamento" href="https://wa.me/5511980533393?text=Preciso%20de%20desentupimento%20em%20condom%C3%ADnio." target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+      </div>
+      <div class="service-card">
+        <span class="sc-icon">🔧</span>
+        <h3>Outros Encanamentos</h3>
+        <p>Tampas, pedras, moedor de lixo e qualquer entupimento hidráulico.</p>
+        <a class="btn-orcamento" href="https://wa.me/5511980533393?text=Preciso%20de%20um%20desentupidor." target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-label">Como Funciona</div>
+    <h2 class="section-title">Do contato à solução<br>em poucos passos</h2>
+    <p class="section-sub">Processo simples e rápido para você ter o problema resolvido o quanto antes.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Entre em Contato</h3>
+        <p>Ligue ou mande mensagem no WhatsApp descrevendo o problema e o endereço.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Orçamento Imediato</h3>
+        <p>Passamos o valor por telefone antes de sair. Sem surpresa no preço.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Técnico no Local</h3>
+        <p>Enviamos um técnico com máquina profissional para o seu endereço.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Problema Resolvido</h3>
+        <p>Desentupimento concluído. Limpo, sem bagunça e com resultado garantido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="section section-mid" id="diferenciais">
+  <div class="container">
+    <div class="section-label">Vantagens</div>
+    <h2 class="section-title">14 anos resolvendo entupimentos<br>em São Paulo</h2>
+    <p class="section-sub">A EHS Desentupidora é referência em qualidade e rapidez no atendimento.</p>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <span class="diff-icon">⚡</span>
+        <h3>Atendimento Rápido</h3>
+        <p>Técnico disponível imediatamente. Entupimento é urgência — a gente sabe disso.</p>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">🔧</span>
+        <h3>Máquina Profissional</h3>
+        <p>Trabalhamos com equipamento industrial. Não usamos produtos químicos agressivos.</p>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">🕐</span>
+        <h3>24 Horas por Dia</h3>
+        <p>Todos os dias, incluindo fins de semana e feriados. Entupimento não escolhe hora.</p>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">💰</span>
+        <h3>Preço Justo</h3>
+        <p>Orçamento honesto antes do serviço. Sem cobranças surpresa após o trabalho.</p>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">🏠</span>
+        <h3>Residencial e Comercial</h3>
+        <p>Casas, apartamentos, condomínios, restaurantes, hotéis e motéis.</p>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">✅</span>
+        <h3>Resultado Garantido</h3>
+        <p>Trabalhamos com comprometimento e responsabilidade. Resultado na hora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-label">Depoimentos</div>
+    <h2 class="section-title">O que nossos clientes dizem</h2>
+    <p class="section-sub">Mais de 5 mil atendimentos realizados em São Paulo e Grande SP.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Pia da cozinha entupida às 21h. Liguei e em menos de uma hora o técnico estava aqui. Resolveu tudo rápido e o preço foi justo. Super recomendo!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👩</div>
+          <div>
+            <div class="author-name">Fernanda S.</div>
+            <div class="author-city">Vila Mariana, SP</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Vaso sanitário entupido num sábado de manhã. A EHS atendeu na hora e resolveu sem precisar quebrar nada. Equipe muito profissional e educada."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👨</div>
+          <div>
+            <div class="author-name">Carlos M.</div>
+            <div class="author-city">Santo André, SP</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Uso para o meu restaurante sempre que preciso limpar a caixa de gordura. Serviço de qualidade, pontual e com preço combinado. Recomendo muito!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👨‍🍳</div>
+          <div>
+            <div class="author-name">Roberto L.</div>
+            <div class="author-city">Moema, SP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÁREAS -->
+<section class="section section-mid" id="areas">
+  <div class="container">
+    <div class="section-label">Área de Atendimento</div>
+    <h2 class="section-title">Atendemos toda São Paulo<br>e Grande SP</h2>
+    <p class="section-sub">Cobrimos a capital e toda a região metropolitana de São Paulo.</p>
+    <div class="areas-flex">
+      <span class="area-chip">📍 São Paulo Capital</span>
+      <span class="area-chip">📍 Zona Sul</span>
+      <span class="area-chip">📍 Zona Norte</span>
+      <span class="area-chip">📍 Zona Leste</span>
+      <span class="area-chip">📍 Zona Oeste</span>
+      <span class="area-chip">📍 Centro</span>
+      <span class="area-chip">📍 ABC Paulista</span>
+      <span class="area-chip">📍 Guarulhos</span>
+      <span class="area-chip">📍 Osasco</span>
+      <span class="area-chip">📍 Santo André</span>
+      <span class="area-chip">📍 São Bernardo</span>
+      <span class="area-chip">📍 Diadema</span>
+    </div>
+    <p class="areas-note">Não encontrou sua região? <a class="areas-note-link" href="tel:+551137746352">Ligue e verifique: (11) 3774-6352</a></p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Precisa resolver agora?<br>A gente atende na hora.</h2>
+    <p>Orçamento rápido por telefone ou WhatsApp. Sem visita desnecessária.</p>
+    <div class="cta-btns">
+      <a class="btn-cta-white" href="tel:+551137746352">📞 (11) 3774-6352</a>
+      <a class="btn-cta-wpp" href="https://wa.me/5511980533393?text=Olá!%20Preciso%20de%20um%20desentupidor%20urgente." target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        CHAME NO WHATSAPP
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<div class="contact-section" id="contato">
+  <div class="contact-grid">
+    <div class="contact-item">
+      <span class="ci-icon">📞</span>
+      <h4>Telefone fixo</h4>
+      <a href="tel:+551137746352">(11) 3774-6352</a>
+    </div>
+    <div class="contact-item">
+      <span class="ci-icon">💬</span>
+      <h4>WhatsApp</h4>
+      <a href="https://wa.me/5511980533393" target="_blank" rel="noopener noreferrer">(11) 98053-3393</a>
+    </div>
+    <div class="contact-item">
+      <span class="ci-icon">✉️</span>
+      <h4>E-mail</h4>
+      <a href="mailto:eladiodesentupidora@hotmail.com">eladiodesentupidora@hotmail.com</a>
+    </div>
+    <div class="contact-item">
+      <span class="ci-icon">🕐</span>
+      <h4>Horário</h4>
+      <p>24 horas · 7 dias</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>EHS Desentupidora</strong> · São Paulo · (11) 3774-6352 · (11) 98053-3393<br/>
+  <span class="footer-sub">Desentupidora 24 horas · Máquina Profissional · Residências, Hotéis e Empresas</span>
+</footer>
+
+</body>
+</html>
