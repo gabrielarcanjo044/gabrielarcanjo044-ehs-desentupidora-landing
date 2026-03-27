@@ -430,6 +430,22 @@
     .author-name { font-size: .85rem; font-weight: 700; color: #fff; }
     .author-city { font-size: .75rem; color: var(--gray); }
 
+    /* ── GALERIA ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      transition: transform .2s, opacity .2s;
+    }
+    .gallery-grid img:hover { transform: scale(1.03); opacity: .9; }
+
     /* ── ÁREAS ── */
     .areas-flex { display: flex; flex-wrap: wrap; gap: 10px; }
     .area-chip {
@@ -632,6 +648,25 @@
   </div>
 </section>
 
+
+<!-- GALERIA -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-label">Nosso Trabalho</div>
+    <h2 class="section-title">Equipe e equipamentos<br>em ação</h2>
+    <p class="section-sub">Fotos reais dos nossos atendimentos na Zona Norte de São Paulo.</p>
+    <div class="gallery-grid">
+      <img src="0001.jpg" alt="Técnico EHS em atendimento" loading="lazy" />
+      <img src="0002.png" alt="Técnico EHS com equipamento" loading="lazy" />
+      <img src="0003.jpg" alt="Desentupimento de esgoto" loading="lazy" />
+      <img src="0004.jpg" alt="Serviço de desentupimento" loading="lazy" />
+      <img src="0005.jpg" alt="Equipe EHS trabalhando" loading="lazy" />
+      <img src="0006.jpg" alt="Jateamento de tubulação" loading="lazy" />
+      <img src="0008.jpg" alt="Desentupimento profissional" loading="lazy" />
+      <img src="mY0Vf.jpg" alt="Van EHS Desentupidora" loading="lazy" />
+    </div>
+  </div>
+</section>
 
 <!-- DIFERENCIAIS -->
 <section class="section section-mid" id="diferenciais">
